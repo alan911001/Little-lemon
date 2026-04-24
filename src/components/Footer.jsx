@@ -1,12 +1,14 @@
+import { ItemsNav } from "./ItemsNav";
 import { Nav } from "./Nav";
+import image_footer from "../assets/restaurant.jpg";
 
 export const Footer = () => {
   return (
-    <footer>
-      <img />
+    <footer className="container">
+      <img src={image_footer} className="img_footer" />
       <div>
         <h3>Doormat Navigation</h3>
-        <Nav />
+        <ItemsNav />
       </div>
       <div>
         <h3>Contact</h3>
