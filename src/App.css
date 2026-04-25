@@ -1,15 +1,48 @@
-.container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 10px 20px;
+:root {
+  --primary_color_a: #495e57;
+  --primary_color_b: #f4ce14;
+  --secondary_color_a: #ee9972;
+  --secondary_color_b: #fbdabb;
+  --highlight_color_a: #edefee;
+  --highlight_color_b: #333333;
+  --font-family-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-title: "Times New Roman", Times, serif;
+  --font-family-text: Arial, Helvetica, sans-serif;
 }
 
 main {
-  background-color: #495e57;
+  background-color: var(--primary_color_a);
 }
 
-/* NAV */
+h1,
+h2 {
+  font-family: var(--font-family-title);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-base);
+}
+p {
+  font-family: var(--font-family-text);
+}
+img {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  width: 200px;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 10px 20px;
+}
+/* NAVAR */
 .nav-items {
   display: flex;
   gap: 30px;
@@ -18,8 +51,8 @@ main {
 
 .nav-items li a {
   text-decoration: none;
-  color: black;
-  font-weight: 500;
+  color: var(--highlight_color_b);
+  font-family: var(--font-family-base);
 }
 
 /* 📱 RESPONSIVE */
@@ -44,14 +77,16 @@ main {
     display: block;
     width: 100%;
     padding: 10px;
-    background: #f4f4f4;
   }
 }
 
-.img_footer {
-  display: flex;
-  justify-content: center;
-  width: 200px;
-  height: auto;
-  border-radius: 10px;
+.nav-items-footer {
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-items-footer li a {
+  text-decoration: none;
+  color: var(--highlight_color_b);
+  font-family: var(--font-family-base);
 }
