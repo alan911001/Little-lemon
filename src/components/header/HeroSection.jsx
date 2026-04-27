@@ -1,17 +1,18 @@
-import image from "../assets/restauranfood.jpg";
+import image from "../../assets/restauranfood.jpg";
 
-export const Main = () => {
+export const HeroSection = () => {
   return (
-    <main className="container">
-      <div>
+    <div className="container">
+      <div className="card-hero">
         <h1>Little lemon</h1>
         <h3>Chicago</h3>
         <p>
           We are a family owned Mediterranean restaurant, focused on traditional
           recipies served whit a modern twist.
         </p>
+        <button>Reserve a table</button>
       </div>
       <img src={image} alt="" />
-    </main>
+    </div>
   );
 };

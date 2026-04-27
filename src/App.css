@@ -10,8 +10,22 @@
   --font-family-text: Arial, Helvetica, sans-serif;
 }
 
-main {
+.hero,
+.testimonials {
   background-color: var(--primary_color_a);
+  h1 {
+    color: var(--primary_color_b);
+  }
+}
+
+.specials,
+.about {
+  h1 {
+    color: var(--primary_color_a);
+  }
+}
+footer {
+  background-color: var(--highlight_color_a);
 }
 
 h1,
@@ -36,9 +50,29 @@ img {
   height: auto;
 }
 
+button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: var(--primary_color_b);
+  color: var(--highlight_color_b);
+  height: 40px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+}
+
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 60px;
   padding: 10px 20px;
 }
@@ -55,8 +89,77 @@ img {
   font-family: var(--font-family-base);
 }
 
+.card-hero {
+  width: 25%;
+  h3,
+  p {
+    color: var(--highlight_color_a);
+  }
+}
+.card-about {
+  width: 25%;
+  h3,
+  p {
+    color: var(--highlight_color_b);
+  }
+}
+
+.card-specials {
+  width: 300px;
+  border-radius: 12px;
+  overflow: hidden; /* 🔥 recorta la imagen */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--highlight_color_a);
+  transition: transform 0.2s ease;
+}
+.card-testimonials {
+  width: 200px;
+  background: var(--highlight_color_a);
+  padding: 16px;
+  border-radius: 12px;
+}
+.card-specials:hover,
+.card-testimonials:hover {
+  transform: translateY(-5px);
+}
+.card-img-specials {
+  width: 100%;
+  height: 180px;
+  object-fit: cover; /* 🔥 evita que se deforme */
+}
+.card-img-testimonials {
+  width: 50%;
+  height: 50%;
+  object-fit: cover; /* 🔥 evita que se deforme */
+}
+.card-body {
+  padding: 10px;
+}
+.card-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  gap: 80px;
+  p {
+    color: var(--secondary_color_a);
+  }
+}
+.card-text {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+.card-footer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  padding: 20px;
+}
+
 /* 📱 RESPONSIVE */
-@media (max-width: 768px) {
+@media (max-width: 970px) {
   .container {
     flex-direction: column; /* logo arriba, nav abajo */
     align-items: center;
@@ -77,6 +180,17 @@ img {
     display: block;
     width: 100%;
     padding: 10px;
+  }
+
+  .card-hero {
+    width: 50%;
+    h1 {
+      color: var(--primary_color_b);
+    }
+    h3,
+    p {
+      color: var(--highlight_color_a);
+    }
   }
 }
 

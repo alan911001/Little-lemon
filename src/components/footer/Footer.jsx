@@ -1,5 +1,5 @@
-import { ItemsNav } from "./ItemsNav";
-import image_footer from "../assets/restaurant.jpg";
+import { ItemsNav } from "../nav bar/ItemsNav";
+import image_footer from "../../assets/restaurant.jpg";
 
 export const Footer = () => {
   return (
