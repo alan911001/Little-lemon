@@ -3,8 +3,8 @@ import person from "../../assets/person.png";
 
 export const Testimonials = () => {
   return (
-    <>
-      <div className="container">
+    <div className="testimonials">
+      <div className="container ">
         <h1>Testimonials</h1>
       </div>
       <div className="container">
@@ -29,6 +29,6 @@ export const Testimonials = () => {
           review="Very good salad and brucheta."
         />
       </div>
-    </>
+    </div>
   );
 };

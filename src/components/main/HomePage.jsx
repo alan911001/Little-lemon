@@ -6,18 +6,10 @@ import { Testimonials } from "./Testimonials";
 export const HomePage = () => {
   return (
     <>
-      <div className="hero">
-        <HeroSection />
-      </div>
-      <div className="specials">
-        <Specials />
-      </div>
-      <div className="testimonials">
-        <Testimonials />
-      </div>
-      <div className="about">
-        <About />
-      </div>
+      <HeroSection />
+      <Specials />
+      <Testimonials />
+      <About />
     </>
   );
 };

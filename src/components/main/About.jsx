@@ -3,7 +3,7 @@ import img from "../../assets/Mario and Adrian A.jpg";
 export const About = () => {
   return (
     <>
-      <div className="container">
+      <div className="container about">
         <div className="card-about">
           <h1>Little lemon</h1>
           <h3>Chicago</h3>

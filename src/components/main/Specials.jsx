@@ -6,7 +6,7 @@ import lemonDesert from "../../assets/lemon dessert.jpg";
 export const Specials = () => {
   return (
     <>
-      <div className="container">
+      <div className="container specials">
         <h1>This weeks specials!</h1>
         <button>Order online</button>
       </div>

@@ -1,23 +1,25 @@
+import { Link, NavLink } from "react-router";
+
 export const ItemsNav = ({ classText }) => {
   return (
     <ul className={classText}>
       <li>
-        <a href="">HOME</a>
+        <Link to="/home">HOME</Link>
       </li>
       <li>
-        <a href="">ABOUT</a>
+        <Link to="/about">ABOUT</Link>
       </li>
       <li>
-        <a href="">MENU</a>
+        <Link to="menu">MENU</Link>
       </li>
       <li>
-        <a href="">RESERVATIONS</a>
+        <Link to="/booking">RESERVATIONS</Link>
       </li>
       <li>
-        <a href="">ORDER ONLINE</a>
+        <Link to="delivery">ORDER ONLINE</Link>
       </li>
       <li>
-        <a href="">LOGIN</a>
+        <Link to="/login">LOGIN</Link>
       </li>
     </ul>
   );

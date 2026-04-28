@@ -11,7 +11,8 @@
 }
 
 .hero,
-.testimonials {
+.testimonials,
+.booking-form {
   background-color: var(--primary_color_a);
   h1 {
     color: var(--primary_color_b);
@@ -39,8 +40,14 @@ h5,
 h6 {
   font-family: var(--font-family-base);
 }
-p {
+p,
+label {
   font-family: var(--font-family-text);
+}
+label {
+  font-size: medium;
+  font-weight: bold;
+  color: var(--highlight_color_a);
 }
 img {
   display: flex;
@@ -50,7 +57,8 @@ img {
   height: auto;
 }
 
-button {
+button,
+.btn {
   display: inline-block;
   cursor: pointer;
   padding: 10px 16px;
@@ -87,6 +95,22 @@ button {
   text-decoration: none;
   color: var(--highlight_color_b);
   font-family: var(--font-family-base);
+}
+
+form {
+  display: grid;
+  gap: 20px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
 }
 
 .card-hero {
@@ -191,6 +215,15 @@ button {
     p {
       color: var(--highlight_color_a);
     }
+  }
+  .card-specials {
+    width: 75%;
+  }
+  .card-testimonials {
+    width: 50%;
+  }
+  .card-about {
+    width: 100%;
   }
 }
 
