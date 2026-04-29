@@ -1,17 +1,33 @@
+import { type } from "@testing-library/user-event/dist/type";
 import { useForm } from "../../hooks/useForm";
+import { useEffect } from "react";
 
-export const BookingForm = () => {
-  const { date, time, guestNumber, occasion, availableTimes, onInputChange } =
-    useForm({
-      date: "",
-      time: "",
-      guestNumber: 0,
-      occasion: "Birthday",
-    });
+export const BookingForm = ({ availableTimes, dispatch }) => {
+  useEffect(() => {
+    dispatch({ type: "INITIALIZE_TIMES" });
+  }, []);
+
+  const { date, time, guestNumber, occasion, onInputChange } = useForm({
+    date: "",
+    time: "",
+    guestNumber: 0,
+    occasion: "Birthday",
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ date, time, guestNumber, occasion });
+  };
+
+  const handleDateChange = (event) => {
+    onInputChange(event, false);
+    dispatch({
+      type: "GET_AVAILABLE_TIMES",
+      date,
+      time,
+      guestNumber,
+      occasion,
+    });
   };
 
   return (
@@ -20,10 +36,10 @@ export const BookingForm = () => {
         <label htmlFor="res-date">Choose date</label>
         <input
           type="date"
-          id="res-date"
+          id="date"
           name="date"
           value={date}
-          onChange={(event) => onInputChange(event, false)}
+          onChange={(event) => handleDateChange(event)}
         />
       </div>
 
