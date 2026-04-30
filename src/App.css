@@ -25,6 +25,9 @@
     color: var(--primary_color_a);
   }
 }
+.booking-form {
+  padding-bottom: 5%;
+}
 footer {
   background-color: var(--highlight_color_a);
 }

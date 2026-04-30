@@ -18,7 +18,6 @@ const updateTimes = (state, action) => {
     return ["15:00", "16:00", "18:00"];
   }
   if (action.type === "GET_AVAILABLE_TIMES") {
-    console.log(`Fecha seleccionada: ${action.date}`);
     return initialSatate;
   }
   return state;
@@ -28,13 +27,13 @@ export const BookingPage = () => {
   const [state, dispatch] = useReducer(updateTimes, initialSatate);
 
   return (
-    <>
-      <div className="container booking-form">
+    <div className="booking-form">
+      <div className="container ">
         <h1>Booking Tables</h1>
       </div>
-      <div className="container booking-form">
+      <div className="container">
         <BookingForm availableTimes={state} dispatch={dispatch} />
       </div>
-    </>
+    </div>
   );
 };
