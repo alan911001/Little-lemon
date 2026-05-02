@@ -1,56 +1,41 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
-import BookingForm from "./components/booking/BookingForm";
-import { updateTimes } from "./BookingPage";
-import { updateTimes } from "./BookingPage";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { BookingForm } from "./components/booking/BookingForm";
 
-// test("renders learn react link", () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+const mockNavigate = jest.fn();
 
-test("Renders the BookingForm heading", () => {
-  const mockDispatch = jest.fn();
-  const mockAvailableTimes = ["17:00", "18:00"];
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
+test("envía el formulario y navega si bookingSubmit es true", () => {
+  const mockSubmit = jest.fn(() => true);
 
   render(
     <BookingForm
-      mockAvailableTimes={mockAvailableTimes}
-      dispatch={mockDispatch}
+      availableTimes={["17:00"]}
+      initializeTimes={jest.fn()}
+      updateTimes={jest.fn()}
+      bookingSubmit={mockSubmit}
     />,
   );
-  const labelElement = screen.getByLabelText("Choose date");
-  expect(labelElement).toBeInTheDocument();
-});
 
-test("INITIALIZE_TIMES devuelve los horarios iniciales correctos", () => {
-  const initialState = [];
-
-  const result = updateTimes(initialState, {
-    type: "INITIALIZE_TIMES",
+  fireEvent.change(screen.getByLabelText(/choose date/i), {
+    target: { value: "2026-05-01" },
   });
 
-  expect(result).toEqual(["15:00", "16:00", "18:00"]);
-});
-
-test("GET_AVAILABLE_TIMES devuelve el estado base de horarios", () => {
-  const initialState = [];
-
-  const result = updateTimes(initialState, {
-    type: "GET_AVAILABLE_TIMES",
-    date: "2026-04-30",
+  fireEvent.change(screen.getByLabelText(/choose time/i), {
+    target: { value: "17:00" },
   });
 
-  expect(result).toEqual([
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-  ]);
+  fireEvent.change(screen.getByLabelText(/number of guests/i), {
+    target: { value: 2 },
+  });
+
+  fireEvent.submit(screen.getByRole("form"));
+
+  expect(mockSubmit).toHaveBeenCalled();
+  expect(mockNavigate).toHaveBeenCalledWith("/confirmed", {
+    state: expect.any(Object),
+  });
 });

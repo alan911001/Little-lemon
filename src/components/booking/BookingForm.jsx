@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { submitAPI } from "../../data/api";
 import { useForm } from "../../hooks/useForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const BookingForm = ({
   availableTimes,
@@ -13,13 +13,20 @@ export const BookingForm = ({
     date: "",
     time: "",
     guestNumber: 0,
-    occasion: "Birthday",
+    occasion: "",
   });
   const navigate = useNavigate();
+  const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    setFormValid(date != "" && time != "" && guestNumber > 0 && occasion != "");
+  }, [date, time, guestNumber, occasion]);
 
   const handleDateChange = (event) => {
     onInputChange(event, false);
-    updateTimes(new Date(event.target.value));
+    if (event.target.name == "date") {
+      updateTimes(new Date(event.target.value));
+    }
   };
 
   const handleSubmit = (event) => {
@@ -38,6 +45,8 @@ export const BookingForm = ({
           type="date"
           id="date"
           name="date"
+          required
+          min={new Date().toISOString().split("T")[0]}
           value={date}
           onChange={handleDateChange}
         />
@@ -49,9 +58,12 @@ export const BookingForm = ({
           id="time"
           name="time"
           value={time}
-          onChange={(event) => onInputChange(event, false)}
+          required
+          onChange={handleDateChange}
         >
-          <option value="">Select a time</option>
+          <option value="" disabled>
+            Select a time
+          </option>
           {availableTimes.map((time) => (
             <option key={time} value={time}>
               {time}
@@ -64,13 +76,13 @@ export const BookingForm = ({
         <label htmlFor="guestNumber">Number of guests</label>
         <input
           type="number"
-          placeholder="1"
           min="1"
           max="10"
+          required
           id="guestNumber"
           name="guestNumber"
           value={guestNumber}
-          onChange={(event) => onInputChange(event, false)}
+          onChange={handleDateChange}
         />
       </div>
 
@@ -79,15 +91,24 @@ export const BookingForm = ({
         <select
           id="occasion"
           name="occasion"
+          required
           value={occasion}
-          onChange={(event) => onInputChange(event, false)}
+          onChange={handleDateChange}
         >
+          <option value="" disabled>
+            Select a occacion
+          </option>
           <option value="Birthday">Birthday</option>
           <option value="Anniversary">Anniversary</option>
         </select>
       </div>
 
-      <input type="submit" className="btn" value="Make Your reservation" />
+      <input
+        type="submit"
+        className="btn"
+        value="Make Your reservation"
+        disabled={!formValid}
+      />
     </form>
   );
 };

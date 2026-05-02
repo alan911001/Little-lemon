@@ -74,6 +74,20 @@ button,
   vertical-align: middle;
   text-align: center;
 }
+button:disabled,
+.btn:disabled {
+  display: inline-block;
+  cursor: default;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: var(--highlight_color_b);
+  color: var(--highlight_color_a);
+  height: 40px;
+  vertical-align: middle;
+  text-align: center;
+}
 
 .btn-link {
   background: none;
