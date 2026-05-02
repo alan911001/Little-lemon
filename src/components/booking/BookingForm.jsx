@@ -1,33 +1,33 @@
-import { type } from "@testing-library/user-event/dist/type";
+import { useNavigate } from "react-router-dom";
+import { submitAPI } from "../../data/api";
 import { useForm } from "../../hooks/useForm";
 import { useEffect } from "react";
 
-export const BookingForm = ({ availableTimes, dispatch }) => {
-  useEffect(() => {
-    dispatch({ type: "INITIALIZE_TIMES" });
-  }, []);
-
+export const BookingForm = ({
+  availableTimes,
+  initializeTimes,
+  updateTimes,
+  bookingSubmit,
+}) => {
   const { date, time, guestNumber, occasion, onInputChange } = useForm({
     date: "",
     time: "",
     guestNumber: 0,
     occasion: "Birthday",
   });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log({ date, time, guestNumber, occasion });
-  };
+  const navigate = useNavigate();
 
   const handleDateChange = (event) => {
     onInputChange(event, false);
-    dispatch({
-      type: "GET_AVAILABLE_TIMES",
-      date,
-      time,
-      guestNumber,
-      occasion,
-    });
+    updateTimes(new Date(event.target.value));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const reservedTable = { date, time, guestNumber, occasion };
+    if (bookingSubmit(reservedTable)) {
+      navigate("/confirmed", { state: reservedTable });
+    }
   };
 
   return (
@@ -39,7 +39,7 @@ export const BookingForm = ({ availableTimes, dispatch }) => {
           id="date"
           name="date"
           value={date}
-          onChange={(event) => handleDateChange(event)}
+          onChange={handleDateChange}
         />
       </div>
 
@@ -51,6 +51,7 @@ export const BookingForm = ({ availableTimes, dispatch }) => {
           value={time}
           onChange={(event) => onInputChange(event, false)}
         >
+          <option value="">Select a time</option>
           {availableTimes.map((time) => (
             <option key={time} value={time}>
               {time}

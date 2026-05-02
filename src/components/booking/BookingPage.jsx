@@ -1,30 +1,35 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { BookingForm } from "./BookingForm";
+import { fetchAPI, submitAPI } from "../../data/api";
+import { type } from "@testing-library/user-event/dist/type";
 
-const initialSatate = [
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-  "18:00",
-  "19:00",
-  "20:00",
-  "21:00",
-  "22:00",
-];
+const initializeTimes = () => {
+  return fetchAPI(new Date());
+};
 
-const updateTimes = (state, action) => {
-  if (action.type === "INITIALIZE_TIMES") {
-    return ["15:00", "16:00", "18:00"];
+const updateTimes = (date) => {
+  const times = fetchAPI(date);
+  return times;
+};
+
+const bookingSubmit = (reservedTable) => {
+  const confirmed = submitAPI(reservedTable);
+  return confirmed;
+};
+
+const dispatchTimes = (state, action) => {
+  switch (action.type) {
+    case "INITIALIZE_TIMES":
+      return initializeTimes();
+    case "GET_AVAILABLE_TIMES":
+      return updateTimes(action.date);
+    default:
+      return state;
   }
-  if (action.type === "GET_AVAILABLE_TIMES") {
-    return initialSatate;
-  }
-  return state;
 };
 
 export const BookingPage = () => {
-  const [state, dispatch] = useReducer(updateTimes, initialSatate);
+  const [state, dispatch] = useReducer(dispatchTimes, [], initializeTimes);
 
   return (
     <div className="booking-form">
@@ -32,7 +37,14 @@ export const BookingPage = () => {
         <h1>Booking Tables</h1>
       </div>
       <div className="container">
-        <BookingForm availableTimes={state} dispatch={dispatch} />
+        <BookingForm
+          availableTimes={state}
+          initializeTimes={() => dispatch({ type: "INITIALIZE_TIMES" })}
+          updateTimes={(date) =>
+            dispatch({ type: "GET_AVAILABLE_TIMES", date })
+          }
+          bookingSubmit={(reservedTable) => bookingSubmit(reservedTable)}
+        />
       </div>
     </div>
   );
