@@ -16,6 +16,7 @@ export const ConfirmedBooking = () => {
         <li>{guestNumber}</li>
         <li>{occasion}</li>
         <button
+          aria-label="Return to booking page"
           onClick={() => {
             navigate("/booking");
           }}

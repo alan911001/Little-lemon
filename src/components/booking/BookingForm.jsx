@@ -102,13 +102,9 @@ export const BookingForm = ({
           <option value="Anniversary">Anniversary</option>
         </select>
       </div>
-
-      <input
-        type="submit"
-        className="btn"
-        value="Make Your reservation"
-        disabled={!formValid}
-      />
+      <button type="submit" disabled={!formValid}>
+        Make your reservation
+      </button>
     </form>
   );
 };

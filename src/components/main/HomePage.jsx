@@ -5,11 +5,11 @@ import { Testimonials } from "./Testimonials";
 
 export const HomePage = () => {
   return (
-    <>
+    <main>
       <HeroSection />
       <Specials />
       <Testimonials />
       <About />
-    </>
+    </main>
   );
 };
