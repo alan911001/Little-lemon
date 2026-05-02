@@ -1,25 +1,61 @@
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 
-export const ItemsNav = ({ classText }) => {
+export const ItemsNav = ({ classText, onClickItem }) => {
   return (
     <ul className={classText}>
       <li>
-        <Link to="/home">HOME</Link>
+        <NavLink
+          to="/home"
+          onClick={onClickItem}
+          className={({ isActive }) => (isActive ? "li-active" : "")}
+        >
+          HOME
+        </NavLink>
       </li>
       <li>
-        <Link to="/about">ABOUT</Link>
+        <NavLink
+          to="/about"
+          onClick={onClickItem}
+          className={({ isActive }) => (isActive ? "li-active" : "")}
+        >
+          ABOUT
+        </NavLink>
       </li>
       <li>
-        <Link to="menu">MENU</Link>
+        <NavLink
+          to="menu"
+          onClick={onClickItem}
+          className={({ isActive }) => (isActive ? "li-active" : "")}
+        >
+          MENU
+        </NavLink>
       </li>
       <li>
-        <Link to="/booking">RESERVATIONS</Link>
+        <NavLink
+          to="/booking"
+          onClick={onClickItem}
+          className={({ isActive }) => (isActive ? "li-active" : "")}
+        >
+          RESERVATIONS
+        </NavLink>
       </li>
       <li>
-        <Link to="delivery">ORDER ONLINE</Link>
+        <NavLink
+          to="delivery"
+          onClick={onClickItem}
+          className={({ isActive }) => (isActive ? "li-active" : "")}
+        >
+          ORDER ONLINE
+        </NavLink>
       </li>
       <li>
-        <Link to="/login">LOGIN</Link>
+        <NavLink
+          to="/login"
+          onClick={onClickItem}
+          className={({ isActive }) => (isActive ? "li-active" : "")}
+        >
+          LOGIN
+        </NavLink>
       </li>
     </ul>
   );
