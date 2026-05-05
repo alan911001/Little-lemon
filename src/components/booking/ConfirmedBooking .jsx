@@ -10,11 +10,15 @@ export const ConfirmedBooking = () => {
       <div className="container ">
         <h1>Booked confirmed</h1>
       </div>
+      <div className="container booked-confirmed">
+        <ul>
+          <li>Date : {date}</li>
+          <li>Time : {time}</li>
+          <li>Guest number : {guestNumber}</li>
+          <li>Occacion : {occasion}</li>
+        </ul>
+      </div>
       <div className="container">
-        <li>Date: {date}</li>
-        <li>Time: {time}</li>
-        <li>Guest number: {guestNumber}</li>
-        <li>Occacion: {occasion}</li>
         <button
           aria-label="Return to booking page"
           onClick={() => {
